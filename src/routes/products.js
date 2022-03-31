@@ -7,3 +7,5 @@ router.get('/', (req, res) => res.send([{
   description: 'Product description',
   price: 100
 }]));
+
+export default router;
