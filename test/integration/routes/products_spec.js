@@ -1,4 +1,14 @@
 describe('Routes: Products', () => {
+  let request;
+  let app;
+
+  before(async () => {
+    app = await setupApp();
+    request = supertest(app);
+  });
+
+  after(async () => await app.database.connection.close());
+
   const defaultProduct = {
     name: 'Default Product',
     description: 'Product description',
@@ -7,9 +17,7 @@ describe('Routes: Products', () => {
 
   describe('GET /products', () => {
     it('should return a list of products', done => {
-      request
-      .get('/products')
-      .end((err, res) => {
+      request.get('/products').end((err, res) => {
         expect(res.body[0]).to.eql(defaultProduct);
         done(err);
       });
