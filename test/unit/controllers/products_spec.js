@@ -5,7 +5,7 @@ import { expect } from 'chai';
 describe('Controllers: Products', () => {
   const defaultProduct = [{
     name: 'Default product',
-    description: 'product description',
+    description: 'Product description',
     price: 100
   }];
 
