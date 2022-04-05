@@ -1,6 +1,6 @@
 import ProductsController from '../../../src/controllers/products';
 import sinon from 'sinon';
-import { expect } from 'chai';
+import Product from '../../../src/models/product';
 
 describe('Controllers: Products', () => {
   const defaultProduct = [{
@@ -10,16 +10,19 @@ describe('Controllers: Products', () => {
   }];
 
   describe('get() products', () => {
-    it('should return a list of products', () => {
+    it('should return a list of products', async () => {
       const request = {};
       const response = {
         send: sinon.spy()
       };
-      const productsController = new ProductsController();
-      productsController.get(request, response);
 
-      expect(response.send.called).to.be.true;
-      expect(response.send.calledWith(defaultProduct)).to.be.true;
+      Product.find = sinon.stub;
+      Product.find.withArgs({}).resolves(defaultProduct);
+
+      const productsController = new ProductsController(Product);
+      await productsController.get(request, response);
+
+      sinon.assert.calledWith(response.send, defaultProduct);      
     });
   });
 });
