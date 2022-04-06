@@ -1,10 +1,11 @@
 class ProductsController {
-  get(req, res) {
-    return res.send([{
-      name: 'Default Product',
-      description: 'Product description',
-      price: 100
-    }]);
+  constructor(Product) {
+    this.Product = Product;
+  }
+
+  async get(req, res) {
+    const products = await this.Product.find({});
+    res.send(products);
   }
 }
 
