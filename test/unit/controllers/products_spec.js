@@ -16,7 +16,7 @@ describe('Controllers: Products', () => {
         send: sinon.spy()
       };
 
-      Product.find = sinon.stub;
+      Product.find = sinon.stub();
       Product.find.withArgs({}).resolves(defaultProduct);
 
       const productsController = new ProductsController(Product);
