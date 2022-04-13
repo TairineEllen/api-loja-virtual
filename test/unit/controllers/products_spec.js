@@ -4,7 +4,7 @@ import Product from '../../../src/models/product';
 
 describe('Controllers: Products', () => {
   const defaultProduct = [{
-    name: 'Default product',
+    name: 'Default Product',
     description: 'Product description',
     price: 100
   }];
